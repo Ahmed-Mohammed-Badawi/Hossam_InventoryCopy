@@ -20,12 +20,7 @@ function login() {
                     <section className={classes.Left}>
                         <div className={classes.LogoContainer}>
                             <div className={classes.Logo}>
-                                <Image
-                                    src={"/Images/Logo.png"}
-                                    layout='fill'
-                                    objectFit='contain'
-                                    alt='Background'
-                                />
+                                Goo<span>Admin</span>
                             </div>
                         </div>
                         <div className={classes.Developer}>

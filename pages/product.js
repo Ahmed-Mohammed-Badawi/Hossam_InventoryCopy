@@ -60,12 +60,7 @@ function Product() {
                         <div className={classes.Top}>
                             <div className={classes.LogoContainer}>
                                 <div className={classes.Logo}>
-                                    <Image
-                                        src={"/Images/Logo.png"}
-                                        width={237}
-                                        height={60}
-                                        alt={"Company logo"}
-                                    />
+                                    Goo<span>Admin</span>
                                 </div>
                             </div>
                             <button className={classes.LogOut}>

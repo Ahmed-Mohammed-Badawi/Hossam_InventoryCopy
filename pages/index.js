@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function Home() {
-
     // initialize Router
     const router = useRouter();
 
@@ -23,12 +22,7 @@ export default function Home() {
                     <div className={classes.Top}>
                         <div className={classes.LogoContainer}>
                             <div className={classes.Logo}>
-                                <Image
-                                    src={"/Images/Logo.png"}
-                                    width={237}
-                                    height={60}
-                                    alt={"Company logo"}
-                                />
+                                Goo<span>Admin</span>
                             </div>
                         </div>
                         <button className={classes.LogOut}>
@@ -42,7 +36,10 @@ export default function Home() {
                         </button>
                     </div>
                     <div className={classes.Bottom}>
-                        <button className={classes.MainBTN} onClick={() => router.push('/scan')}>
+                        <button
+                            className={classes.MainBTN}
+                            onClick={() => router.push("/scan")}
+                        >
                             <Image
                                 src={"/Icons/ScannerBTN.svg"}
                                 width={40}
