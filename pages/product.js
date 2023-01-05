@@ -40,7 +40,7 @@ function Product() {
     // Get the item Data Function from the server with it's code
     async function getTheData(searchCode) {
         axios
-            .get("https://inventory2.gooadmin.art/api/v1/item/details", {
+            .get(`${process.env.NEXT_PUBLIC_GET_PRODUCT_ENDPOINT}`, {
                 params: {
                     itemBarcode: searchCode,
                 },
@@ -106,7 +106,9 @@ function Product() {
     };
 
     // Update The Data
-    const UpdateHandler = (Asset_Number) => {
+    const UpdateHandler = (e, Asset_Number) => {
+        // Prevent Default the Action
+        e.preventDefault();
         // get the value from inputs and store in constants
         const quantityValue = quantityRef.current.value;
         // get the username from the localstorage
@@ -124,20 +126,21 @@ function Product() {
             return;
         }
         // check if the quantity is invalid
-        if (isNaN(quantityValue)) {
+        if (
+            isNaN(quantityValue) ||
+            quantityValue === "" ||
+            quantityValue === null
+        ) {
             toast.error("The Entered Quantity is invalid");
             return;
         }
         // Send the update request to the server
         axios
-            .post(
-                `https://inventory2.gooadmin.art/api/v1/create/item/inventory`,
-                {
-                    itemBarcode: Asset_Number,
-                    quantity: quantityValue,
-                    username: username,
-                }
-            )
+            .post(`${process.env.NEXT_PUBLIC_CREATE_RECORD_ENDPOINT}`, {
+                itemBarcode: Asset_Number,
+                quantity: quantityValue,
+                username: username,
+            })
             .then((res) => {
                 // Show a notification
                 if (res.data.success && res.data.message) {
@@ -227,32 +230,39 @@ function Product() {
                         </article>
                     </section>
                     <section className={classes.Section_3}>
-                        <article className={classes.User_Item}>
-                            <label htmlFor='quantity'>Quantity</label>
-                            <input
-                                id='quantity'
-                                type={"number"}
-                                placeholder={"Enter Quantity"}
-                                ref={quantityRef}
-                            />
-                        </article>
-                        <div className={classes.BTN_Container}>
-                            <ScanButton
-                                submit_function={() => {
-                                    dispatch(clearTheInput());
-                                    router.push("/scan");
-                                }}
-                            />
-                            <SubmitButton
-                                buttonText={"Update"}
-                                buttonFunction={() => {
-                                    // Code from url query
-                                    const { itemBarcode: queryCode } =
-                                        router.query;
-                                    UpdateHandler(ReduxCode || queryCode);
-                                }}
-                            />
-                        </div>
+                        <form
+                            style={{ width: "100%" }}
+                            onSubmit={(e) => {
+                                // Code from url query
+                                const { itemBarcode: queryCode } = router.query;
+                                UpdateHandler(e, ReduxCode || queryCode);
+                                // redirect to scan
+                                router.push("/scan");
+                            }}
+                        >
+                            <article className={classes.User_Item}>
+                                <label htmlFor='quantity'>Quantity</label>
+                                <input
+                                    id='quantity'
+                                    type={"number"}
+                                    placeholder={"Enter Quantity"}
+                                    ref={quantityRef}
+                                    required={"on"}
+                                />
+                            </article>
+                            <div className={classes.BTN_Container}>
+                                <ScanButton
+                                    submit_function={() => {
+                                        dispatch(clearTheInput());
+                                        router.push("/scan");
+                                    }}
+                                />
+                                <SubmitButton
+                                    buttonText={"Update"}
+                                    buttonFunction={() => {}}
+                                />
+                            </div>
+                        </form>
                     </section>
                 </div>
             </div>

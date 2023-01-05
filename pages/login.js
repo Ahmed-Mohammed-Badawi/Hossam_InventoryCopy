@@ -8,6 +8,7 @@ import SubmitButton from "../components/Layout/SubmitButton";
 import { toast } from "react-toastify";
 import axios from "axios";
 
+
 function Login() {
     // Router
     const router = useRouter();
@@ -31,7 +32,7 @@ function Login() {
 
         // Axios Request
         const result = await axios
-            .post(`https://inventory2.gooadmin.art/api/v1/user/login`, {
+            .post(`${process.env.NEXT_PUBLIC_LOGIN_ENDPOINT}`, {
                 username: userName,
                 password: password,
             })
@@ -57,14 +58,14 @@ function Login() {
             .catch((err) => {
                 // Return error message for the user
                 if (
-                    err.response.data.message.includes(
+                    err.response?.data?.message?.includes(
                         "Cannot read properties of undefined"
                     ) &&
-                    err.response.data.success === false
+                    err.response?.data?.success === false
                 ) {
                     toast.error("Incorrect username or password 😢");
                 } else {
-                    toast.error(`${err.response.data.message} 😢`);
+                    toast.error(`${err.response?.data?.message || `Something is wrong`} 😢`);
                 }
             });
     };
