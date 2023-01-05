@@ -46,6 +46,7 @@ function Product() {
                 },
             })
             .then((res) => {
+                console.log(res)
                 // check if the data came
                 if (res.data.success && res.data.item) {
                     // Add the Array of Values in the state
@@ -91,8 +92,6 @@ function Product() {
         } else if (queryCode) {
             // get the data of item based on the code
             getTheData(queryCode);
-        } else {
-            router.push("/scan");
         }
     }, [router, ReduxCode]);
     // LogoutHandler
@@ -228,7 +227,7 @@ function Product() {
                         </article>
                         <article className={classes.Admin_Item}>
                             <h2>Asset Price</h2>
-                            <p>Price</p>
+                            <p>{data && data[1]}</p>
                         </article>
                     </section>
                     <section className={classes.Section_3}>
