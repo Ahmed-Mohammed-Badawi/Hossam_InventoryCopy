@@ -18,3 +18,23 @@ function scan() {
 }
 
 export default scan;
+
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+export const getServerSideProps = async (ctx) => {
+    // Cookies
+    const { authenticated } = ctx.req.cookies;
+    // check if the user is valid
+    if (!authenticated || authenticated !== "true") {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {},
+    };
+};

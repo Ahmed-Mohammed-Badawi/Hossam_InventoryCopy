@@ -9,7 +9,6 @@
     background-size: cover;
     min-height: 100vh;
 
-    
     @media only screen and (max-width: 767px) {
         padding: 5rem 1rem;
     }
@@ -49,7 +48,7 @@
                         font-family: var(--Motserrat);
 
                         color: var(--orange_1);
-                        span{
+                        span {
                             color: var(--green_1);
                         }
                     }
@@ -106,9 +105,8 @@
                     background-image: radial-gradient(#d96e30, transparent);
                 }
 
-                
                 @media only screen and (max-width: 767px) {
-                    button{
+                    button {
                         width: 6rem;
                         height: 6rem;
                     }
@@ -120,6 +118,7 @@
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
+            gap: 1.5rem;
             padding: 3rem;
             background-color: var(--white);
             border-radius: var(--radius_10);
@@ -127,8 +126,7 @@
             margin-bottom: 1.5rem;
 
             .Admin_Item {
-                width: 50%;
-                gap: 0.7rem;
+                width: calc(50% - 0.75rem);
                 margin-bottom: 1.5rem;
 
                 @media only screen and (max-width: 850px) {
@@ -207,6 +205,7 @@
             justify-content: flex-end;
             width: 100%;
             margin-top: 2rem;
+            gap: 1rem;
         }
     }
 }
