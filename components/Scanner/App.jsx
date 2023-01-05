@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import {
     updateTheCode,
 } from "../../Redux/Reducers/layoutReducer";
+// Notification
+import {toast} from 'react-toastify';
 
 class App extends React.Component {
     constructor(props) {
@@ -19,6 +21,11 @@ class App extends React.Component {
     }
 
     barcodeHandler(code) {
+        // check if code length is longer than 0
+        if(code.length <= 0){
+            toast.error('Please type a valid code 😢')
+            return;
+        }
         // Go to the product page
         Router.push(`/product?itemBarcode=${code}`);
     }

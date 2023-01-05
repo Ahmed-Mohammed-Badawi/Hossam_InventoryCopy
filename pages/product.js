@@ -91,6 +91,8 @@ function Product() {
         } else if (queryCode) {
             // get the data of item based on the code
             getTheData(queryCode);
+        } else {
+            router.push("/scan");
         }
     }, [router, ReduxCode]);
     // LogoutHandler
