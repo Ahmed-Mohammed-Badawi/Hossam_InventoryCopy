@@ -238,6 +238,8 @@ function Product() {
                                 // Code from url query
                                 const { itemBarcode: queryCode } = router.query;
                                 UpdateHandler(e, ReduxCode || queryCode);
+                                // clear the input
+                                dispatch(clearTheInput());
                                 // redirect to scan
                                 router.push("/scan");
                             }}
