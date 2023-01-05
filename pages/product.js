@@ -252,6 +252,7 @@ function Product() {
                                     placeholder={"Enter Quantity"}
                                     ref={quantityRef}
                                     required={"on"}
+                                    min={'0'}
                                 />
                             </article>
                             <div className={classes.BTN_Container}>
