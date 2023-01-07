@@ -46,7 +46,6 @@ function Product() {
                 },
             })
             .then((res) => {
-                console.log(res)
                 // check if the data came
                 if (res.data.success && res.data.item) {
                     // Add the Array of Values in the state
@@ -147,6 +146,9 @@ function Product() {
                 if (res.data.success && res.data.message) {
                     toast.success(`${res.data.message} ✨`);
                 }
+
+                // clear quentity
+                quantityValue = ''
                 // Return res data
                 return res.data;
             })
